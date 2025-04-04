@@ -18,6 +18,9 @@ public class User {
     private boolean enabled;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     @ToString.Include(name = "password")
     private String makePassword(){return "********";}

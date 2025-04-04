@@ -2,24 +2,24 @@ package com.kubik.masterskaya.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(toBuilder = true)
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "products")
+public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private Integer count;
-    private Long idFood;
-    @ManyToOne
-    @JoinColumn(name = "cheque_id")
-    private Cheque cheque;
+    private String name;
+    private Integer price;
+    private String description;
+    private String url;
+    private String brand;
+    private String carBrand;
 
 }
+

@@ -1,10 +1,12 @@
 package com.kubik.masterskaya.service.impl;
 
 import com.kubik.masterskaya.config.PasswordEncoderConfig;
+import com.kubik.masterskaya.dto.cart.CartRequestDto;
 import com.kubik.masterskaya.entity.Role;
 import com.kubik.masterskaya.entity.User;
 import com.kubik.masterskaya.exception.ApiException;
 import com.kubik.masterskaya.repository.UserRepository;
+import com.kubik.masterskaya.service.CartService;
 import com.kubik.masterskaya.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoderConfig passwordEncoderConfig;
+    private final CartService cartService;
 
     @Override
     public User getUserByUsername(String username) {
@@ -39,6 +42,7 @@ public class UserServiceImpl implements UserService {
                         .enabled(true)
                         .password(passwordEncoderConfig.passwordEncoder().encode(user.getPassword()))
                         .username(user.getUsername())
+                        .cart(cartService.create())
                         .build()
         );
     }
@@ -56,11 +60,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User makeSuperUser(Long id) {
         return userRepository.findById(id)
-                .map(user->{
+                .map(user -> {
                     user.setRole(Role.ADMIN);
                     return userRepository.save(user);
                 })
-                .orElseThrow(()->new ApiException("No such user","NO_SUCH_USER"));
+                .orElseThrow(() -> new ApiException("No such user", "NO_SUCH_USER"));
     }
 }
 

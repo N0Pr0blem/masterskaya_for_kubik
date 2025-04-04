@@ -1,6 +1,6 @@
 package com.kubik.masterskaya.controller;
 
-import com.kubik.masterskaya.dto.UserResponseDto;
+import com.kubik.masterskaya.dto.user.UserResponseDto;
 import com.kubik.masterskaya.mapper.UserMapper;
 import com.kubik.masterskaya.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;

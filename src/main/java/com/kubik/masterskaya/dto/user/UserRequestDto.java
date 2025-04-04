@@ -1,4 +1,4 @@
-package com.kubik.masterskaya.dto;
+package com.kubik.masterskaya.dto.user;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

@@ -1,8 +1,8 @@
 package com.kubik.masterskaya.controller;
 
-import com.kubik.masterskaya.dto.AuthenticationRequestDto;
-import com.kubik.masterskaya.dto.AuthenticationResponseDto;
-import com.kubik.masterskaya.dto.RegisterRequestDto;
+import com.kubik.masterskaya.dto.auth.AuthenticationRequestDto;
+import com.kubik.masterskaya.dto.auth.AuthenticationResponseDto;
+import com.kubik.masterskaya.dto.auth.RegisterRequestDto;
 import com.kubik.masterskaya.entity.User;
 import com.kubik.masterskaya.security.SecurityService;
 import com.kubik.masterskaya.service.UserService;
