@@ -15,8 +15,8 @@ public class Product {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
     private Integer price;
+    private String description;
     private String url;
     private String brand;
     private String carBrand;

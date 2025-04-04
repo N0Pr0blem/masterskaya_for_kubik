@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ProductRequestDto {
     private String name;
-    private String description;
     private Integer price;
+    private String description;
     private String url;
     private String brand;
     private String carBrand;

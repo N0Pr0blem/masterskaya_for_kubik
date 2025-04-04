@@ -66,7 +66,8 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
     }
 
-    private Cart getCartById(Long cartId) {
+    @Override
+    public Cart getCartById(Long cartId) {
         return cartRepository.findById(cartId)
                 .orElseThrow(() -> new ApiException("No such cart exception", "NO_SUCH_CART"));
     }

@@ -10,9 +10,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/masterskaya
-    username: root
-    password: root
+    url: jdbc:postgresql://localhost:5432/masterskaya
+    username: root #поменять на свое имя полльзователя
+    password: root #поменять на свой пароль
 
 springdoc:
   swagger-ui:
