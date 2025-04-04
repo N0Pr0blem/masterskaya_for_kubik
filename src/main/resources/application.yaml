@@ -1,0 +1,43 @@
+server:
+  port: 8085
+
+jwt:
+  secret: b5f59337a612a2a7dc07328f3e7d1a04722967c7f86df20a499a7d3f91ff2a7c1234567890abcdef1234567890abcdef
+  expirationMs: 3600000
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/masterskaya
+    username: root
+    password: root
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /api/v1/swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  packages-to-scan: com.kubik.masterskaya.controller
+
+logging:
+  level:
+    org.springdoc: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      simple:
+        enabled: true
+
+
