@@ -3,6 +3,7 @@ package com.kubik.masterskaya.controller;
 import com.kubik.masterskaya.dto.auth.AuthenticationRequestDto;
 import com.kubik.masterskaya.dto.auth.AuthenticationResponseDto;
 import com.kubik.masterskaya.dto.auth.RegisterRequestDto;
+import com.kubik.masterskaya.dto.user.UserRequestDto;
 import com.kubik.masterskaya.entity.User;
 import com.kubik.masterskaya.security.SecurityService;
 import com.kubik.masterskaya.service.UserService;
@@ -10,6 +11,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,6 +47,17 @@ public class AuthController {
     @Operation(summary = "Make super user")
     public ResponseEntity<User> makeSuperUser(@PathVariable Long id){
         return ResponseEntity.ok(userService.makeSuperUser(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<User> getInfo(Principal principal) {
+        return ResponseEntity.ok(userService.getUserByUsername(principal.getName()));
+    }
+
+    @PatchMapping
+    @Operation(summary = "Update user info")
+    public ResponseEntity<User> updateUser(@RequestBody UserRequestDto userRequestDto, Principal principal) {
+        return ResponseEntity.ok(userService.updateUser(userRequestDto, userService.getUserByUsername(principal.getName())));
     }
 
 }
