@@ -2,6 +2,7 @@ package com.kubik.masterskaya.service.impl;
 
 import com.kubik.masterskaya.config.PasswordEncoderConfig;
 import com.kubik.masterskaya.dto.cart.CartRequestDto;
+import com.kubik.masterskaya.dto.user.UserRequestDto;
 import com.kubik.masterskaya.entity.Role;
 import com.kubik.masterskaya.entity.User;
 import com.kubik.masterskaya.exception.ApiException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -65,6 +67,26 @@ public class UserServiceImpl implements UserService {
                     return userRepository.save(user);
                 })
                 .orElseThrow(() -> new ApiException("No such user", "NO_SUCH_USER"));
+    }
+
+    @Override
+    public User updateUser(UserRequestDto userRequestDto, User user) {
+        if (userRequestDto.getUsername() != null) {
+            Optional<User> findUser = userRepository.findByUsername(userRequestDto.getUsername());
+            if (findUser.isEmpty()) user.setUsername(userRequestDto.getUsername());
+        }
+        if (userRequestDto.getPassword() != null) user.setPassword(
+                passwordEncoderConfig.passwordEncoder()
+                        .encode(userRequestDto.getPassword())
+        );
+        if (userRequestDto.getFName() != null) user.setFName(userRequestDto.getFName());
+        if (userRequestDto.getSName() != null) user.setSName(userRequestDto.getSName());
+        if (userRequestDto.getLName() != null) user.setLName(userRequestDto.getLName());
+        if (userRequestDto.getEmail() != null) user.setEmail(userRequestDto.getEmail());
+        if (userRequestDto.getPhoneNumber() != null) user.setPhoneNumber(userRequestDto.getPhoneNumber());
+        if (userRequestDto.getBirthday() != null) user.setBirthday(userRequestDto.getBirthday());
+
+        return userRepository.save(user);
     }
 }
 
