@@ -29,6 +29,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
+    private SecondRole secondRole;
 
     @ToString.Include(name = "password")
     private String makePassword(){return "********";}
